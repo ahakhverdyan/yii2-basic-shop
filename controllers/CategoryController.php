@@ -12,7 +12,7 @@ use yii\web\{
 };
 
 
-class CategoryController extends Controller
+class CategoryController extends AppController
 {
     public function actionView($id)
     {
@@ -23,6 +23,11 @@ class CategoryController extends Controller
             throw new NotFoundHttpException('Page not found');
         }
 
+        $this->setMeta(
+            $category->title . ' : ' . 'Sitename',
+            $category->keywords,
+            $category->description
+        );
         $products = Product::find()
             ->where(['category_id' => $id])
             ->all();

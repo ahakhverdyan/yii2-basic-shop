@@ -14,7 +14,7 @@ AppAsset::register($this);
     <base href="/">
     <meta charset="<?= Yii::$app->charset ?>">
     <?php $this->registerCsrfMetaTags() ?>
-    <title><?= Html::encode(Yii::$app->name) ?></title>
+    <title><?= Html::encode($this->title) ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- start-smoth-scrolling -->
     <?php $this->head() ?>

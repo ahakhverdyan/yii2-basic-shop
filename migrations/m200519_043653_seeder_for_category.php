@@ -13,8 +13,8 @@ class m200519_043653_seeder_for_category extends Migration
     public function safeUp()
     {
         $sql = 'INSERT INTO `category` (`id`, `parent_id`, `title`, `description`, `keywords`) VALUES
-                (1, 0, \'Branded Foods\', \'Branded Foods keywords\', \'Branded Foods description\'),
-                (2, 0, \'Households\', \'Households keywords\', \'Households description\'),
+                (1, 0, \'Branded Foods\', \'Branded Foods description\', \'Branded Foods keywords\'),
+                (2, 0, \'Households\', \'Households description\', \'Households keywords\'),
                 (3, 0, \'Veggies & Fruits\', \'Veggies & Fruits description\', \'Veggies & Fruits keywords\'),
                 (4, 3, \'Vegetables\', \'Vegetables description\', \'Vegetables keywords\'),
                 (5, 3, \'Fruits\', \'Fruits description\', \'Fruits keywords\'),
