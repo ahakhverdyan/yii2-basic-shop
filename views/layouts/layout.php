@@ -11,6 +11,7 @@ AppAsset::register($this);
 <html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
+    <base href="/">
     <meta charset="<?= Yii::$app->charset ?>">
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode(Yii::$app->name) ?></title>
@@ -86,9 +87,6 @@ AppAsset::register($this);
 </div>
 <!-- //header -->
 
-<!-- banner -->
-<div class="banner">
- <?=$this->render('inc/sidebar');?>
 <?=$content?>
 <!-- footer -->
 <div class="footer">
