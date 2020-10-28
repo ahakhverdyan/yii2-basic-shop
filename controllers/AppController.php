@@ -14,16 +14,21 @@ class AppController extends Controller
         return parent::beforeAction($action);
     }
 
+    /**
+     * @param null|string $title
+     * @param null|string $keywords
+     * @param null|string $description
+     */
     protected function setMeta($title = null, $keywords = null, $description = null)
     {
         $this->view->title = $title;
         $this->view->registerMetaTag([
             'name' => 'keywords',
-            'content' => $keywords
+            'content' => "$keywords"
         ]);
         $this->view->registerMetaTag([
             'name' => 'description',
-            'content' => $description
+            'content' => "$description"
         ]);
     }
 }

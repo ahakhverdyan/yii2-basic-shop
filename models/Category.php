@@ -13,4 +13,8 @@ class Category extends ActiveRecord
         return '{{%category%}}';
     }
 
+    public function getParent() {
+        return $this->hasOne(self::class, ['id' => 'parent_id']);
+    }
+
 }

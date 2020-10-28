@@ -36,7 +36,7 @@ class m200519_043653_seeder_for_category extends Migration
      */
     public function safeDown()
     {
-        return false;
+        return true;
     }
 
 }

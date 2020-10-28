@@ -1,6 +1,13 @@
 <?php
 use \yii\helpers\Html;
 use \yii\helpers\Url;
+
+/**
+ * @var \app\models\Category $category
+ * @var \yii\data\Pagination $pages
+ *
+ */
+
 ?>
 <!-- products-breadcrumb -->
 <div class="products-breadcrumb">
@@ -10,6 +17,9 @@ use \yii\helpers\Url;
                 <i class="fa fa-home" aria-hidden="true"></i>
                 <a href="<?=Url::home()?>">Home</a><span>|</span>
             </li>
+            <?php if($category->parent): ?>
+            <li><?=$category->parent->title?></li><span>|</span>
+            <?php endif; ?>
             <li><?=$category->title?></li>
         </ul>
     </div>
@@ -124,12 +134,16 @@ use \yii\helpers\Url;
                             </div>
                         </div>
                     <?php endforeach; ?>
+                    <div class="clearfix"> </div>
+                    <div class="col-md-12">
+                        <?=\yii\widgets\LinkPager::widget(['pagination' => $pages])?>
+                    </div>
                 <?php else: ?>
                     <div class="col-md-3 w3ls_w3l_banner_left">
                       <h6>Продуктов нет для показа</h6>
                     </div>
                 <?php endif; ?>
-                <div class="clearfix"> </div>
+
             </div>
 
         </div>

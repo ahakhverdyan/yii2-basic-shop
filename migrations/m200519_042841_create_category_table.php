@@ -19,6 +19,8 @@ class m200519_042841_create_category_table extends Migration
             'description' => $this->string()->defaultValue(Null),
             'keywords' => $this->string()->defaultValue(Null),
         ]);
+
+        $this->createIndex('category_parent_id', '{{%category}}', 'parent_id');
     }
 
     /**

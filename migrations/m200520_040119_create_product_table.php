@@ -25,6 +25,8 @@ class m200520_040119_create_product_table extends Migration
             'is_offer' => $this->tinyInteger(4)->notNull()->defaultValue(0)
         ]);
 
+        $this->createIndex('product_category_id', '{{%product}}', 'category_id');
+
         $seaderSql = 'INSERT INTO `product` (`id`, `category_id`, `title`, `content`, `price`, `old_price`, `description`, `keywords`, `img`, `is_offer`) VALUES
 (1, 1, \'knorr instant soup (100 gm)\', \'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\', \'3.00\', \'0.00\', NULL, NULL, \'5.png\', 1),
 (2, 1, \'chings noodles (75 gm)\', \'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\', \'5.00\', \'8.00\', NULL, NULL, \'6.png\', 1),
