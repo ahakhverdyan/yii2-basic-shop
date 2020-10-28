@@ -35,9 +35,26 @@ class CategoryController extends AppController
         $productsQuery = Product::find()->where(['category_id' => $id]);
         $countQuery = clone $productsQuery;
 
-        $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 4, 'pageSizeParam' => false, 'forcePageParam' =>false, 'validatePage' => false]);
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 4, 'pageSizeParam' => false, 'forcePageParam' =>false]);
         $products = $productsQuery->offset($pages->offset)->limit($pages->limit)->all();
 
         return $this->render('view', compact('category', 'products', 'pages'));
+    }
+
+    public function actionSearch()
+    {
+        $q = trim(\Yii::$app->request->get('q'));
+        $products = null;
+        $this->setMeta("Поиск : {$q} :: " . \Yii::$app->name);
+
+        if (!$q) return $this->render('search', compact('q', 'products'));
+
+        $productsQuery = Product::find()->where(['like', 'title' , $q]);
+        $countQuery = clone $productsQuery;
+
+        $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 20, 'pageSizeParam' => false, 'forcePageParam' =>false, 'validatePage' => false]);
+        $products = $productsQuery->offset($pages->offset)->limit($pages->limit)->all();
+        return $this->render('search', compact('q', 'products', 'pages'));
+
     }
 }
