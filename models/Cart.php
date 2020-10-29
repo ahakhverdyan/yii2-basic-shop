@@ -31,6 +31,7 @@ class Cart extends Model
      */
     public function addToCart(Product $product,  $qty = 1)
     {
+        $qty = ($qty == '-1') ? -1 : 1;
         // if isset add else create
         if(isset($_SESSION['cart'][$product->id])) {
             $_SESSION['cart'][$product->id]['qty'] += $qty;
@@ -46,6 +47,12 @@ class Cart extends Model
         $_SESSION['cart']['qty'] = (isset($_SESSION['cart']['qty'])) ? $_SESSION['cart']['qty'] + $qty : $qty;
         $sum =  $qty * $product->price;
         $_SESSION['cart']['sum'] = (isset($_SESSION['cart']['sum'])) ? $_SESSION['cart']['sum'] + $sum : $sum;
+
+        if($_SESSION['cart'][$product->id]['qty'] == 0) {
+            unset($_SESSION['cart'][$product->id]);
+        }
+
+        $this->calcTotalBalance();
     }
 
     /**
@@ -66,6 +73,21 @@ class Cart extends Model
         $_SESSION['cart']['sum'] -= $minusSum;
         unset($_SESSION['cart'][$id]);
 
+        $this->calcTotalBalance();
+
+    }
+
+
+    /**
+     *  If no products delete total sum and qty
+     * @return bool
+     */
+    public function calcTotalBalance() {
+        if($_SESSION['cart']['qty'] == 0) {
+            unset($_SESSION['cart']['qty']);
+            unset($_SESSION['cart']['sum']);
+        }
+        return true;
     }
 
 }
