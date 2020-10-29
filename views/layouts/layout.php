@@ -1,5 +1,6 @@
 <?php
 use app\assets\AppAsset;
+use app\widgets\Card;
 use yii\helpers\Html;
 use \yii\helpers\Url;
 
@@ -34,13 +35,7 @@ AppAsset::register($this);
         </form>
     </div>
     <div class="product_list_header">
-        <form action="#" method="post" class="last">
-            <fieldset>
-                <input type="hidden" name="cmd" value="_cart" />
-                <input type="hidden" name="display" value="1" />
-                <input type="submit" name="submit" value="View your cart" class="button" />
-            </fieldset>
-        </form>
+        <?=Card::widget();?>
     </div>
     <div class="w3l_header_right">
         <ul>

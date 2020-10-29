@@ -66,3 +66,25 @@ paypal.minicart.cart.on('checkout', function (evt) {
     }
 });
 
+/* Cart */
+$('.add-to-cart').on('click', function () {
+    let id = $(this).data('id');
+
+    $.ajax({
+        url: 'cart/add',
+        data: {id:id},
+        type: 'GET',
+        success : function(res) {
+            console.log(res);
+        },
+        error: function () {
+            alert('Error! : Cant add to cart');
+        }
+    });
+
+    return false;
+});
+
+
+
+/* /Cart */
