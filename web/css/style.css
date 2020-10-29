@@ -589,6 +589,21 @@ ul.dropdown-menu.drp-mnu li a i {
     background: url(../images/cart.png) no-repeat 116px 9px;
 	width: 144px;
 }
+
+.product_list_header button.close span {
+	color: #000;
+}
+
+.product_list_header span.del-item {
+	color: #FA1818;
+	top: 0;
+	cursor: pointer;
+}
+
+#modal-cart img {
+	max-height: 50px;
+}
+
 #PPMiniCart form {
     width: 590px !important;
 	padding: 10px 20px 40px !important;

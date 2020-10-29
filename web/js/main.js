@@ -67,6 +67,41 @@ paypal.minicart.cart.on('checkout', function (evt) {
 });
 
 /* Cart */
+
+function showCart(cart) {
+    $('#modal-cart .modal-body').html(cart);
+    $('#modal-cart').modal();
+    let cartSumText = $('#cart-sum').text();
+    let cartSum = cartSumText ? cartSumText : '$0';
+    $('.cart-sum').text(cartSum);
+}
+
+function getCart() {
+    $.ajax({
+        url: 'cart/show',
+        type: 'GET',
+        success : function(res) {
+            showCart(res);
+        },
+        error: function () {
+            alert('Error! : Cant add to cart');
+        }
+    });
+}
+
+function clearCart() {
+    $.ajax({
+        url: 'cart/clear',
+        type: 'GET',
+        success : function(res) {
+            showCart(res);
+        },
+        error: function () {
+            alert('Error! : Cant add to cart');
+        }
+    });
+}
+
 $('.add-to-cart').on('click', function () {
     let id = $(this).data('id');
 
@@ -75,7 +110,8 @@ $('.add-to-cart').on('click', function () {
         data: {id:id},
         type: 'GET',
         success : function(res) {
-            console.log(res);
+            if(!res) alert('Product dose not exists');
+            showCart(res);
         },
         error: function () {
             alert('Error! : Cant add to cart');
@@ -83,6 +119,23 @@ $('.add-to-cart').on('click', function () {
     });
 
     return false;
+});
+
+
+$('#modal-cart .modal-body').on('click', '.del-item', function () {
+    let id = $(this).data('id');
+    $.ajax({
+        url: 'cart/delete-item',
+        data: {id:id},
+        type: 'GET',
+        success : function(res) {
+            if(!res) alert('Product dose not exists');
+            showCart(res);
+        },
+        error: function () {
+            alert('Error! : Cant add to cart');
+        }
+    });
 });
 
 

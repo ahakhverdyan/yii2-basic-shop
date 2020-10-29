@@ -47,4 +47,25 @@ class Cart extends Model
         $sum =  $qty * $product->price;
         $_SESSION['cart']['sum'] = (isset($_SESSION['cart']['sum'])) ? $_SESSION['cart']['sum'] + $sum : $sum;
     }
+
+    /**
+     *  Its for delete product by id from session
+     * @param $id
+     * @return bool
+     */
+    public function recalculate($id)
+    {
+        if (!isset($_SESSION['cart'][$id])) {
+            return false;
+        }
+
+        $minusQty = $_SESSION['cart'][$id]['qty'];
+        $minusSum = $minusQty * $_SESSION['cart'][$id]['price'];
+
+        $_SESSION['cart']['qty'] -= $minusQty;
+        $_SESSION['cart']['sum'] -= $minusSum;
+        unset($_SESSION['cart'][$id]);
+
+    }
+
 }
