@@ -87,6 +87,7 @@ class CartController extends AppController
                 $session->remove('cart.qty');
                 $session->remove('cart.sum');
                 $transaction->commit();
+                /** @ToDo send email to client and admin */
                 return $this->refresh();
             }
         }
