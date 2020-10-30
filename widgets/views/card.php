@@ -3,7 +3,7 @@ use yii\helpers\Url;
 ?>
 <!-- Button trigger modal -->
 <button onclick="getCart()" type="button" class="button" data-toggle="modal" data-target="#modal-cart">
-    <span class="cart-sum">$<?=$_SESSION['cart']['sum'] ?? 0 ?></span>
+    <span class="cart-sum">$<?=$_SESSION['cart.sum'] ?? 0 ?></span>
 </button>
 
 <!-- Modal -->
@@ -21,7 +21,7 @@ use yii\helpers\Url;
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Продольжить покупки</button>
-                <a href="<?=Url::to(['cart/view'])?>"  class="btn btn-success">Оформить заказ</a>
+                <a href="<?=Url::to(['cart/checkout'])?>"  class="btn btn-success">Оформить заказ</a>
                 <button onclick="clearCart()" type="button" class="btn btn-danger">Очистить карзину</button>
             </div>
         </div>

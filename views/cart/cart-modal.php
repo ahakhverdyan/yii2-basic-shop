@@ -13,7 +13,7 @@
             </thead>
             <tbody>
             <?php foreach($session['cart'] as $id => $item):?>
-                <?php if(!is_numeric($id)) continue; ?>
+
                 <tr>
                     <td><?= \yii\helpers\Html::img("@web/products/{$item['img']}", ['alt' => $item['title'], 'height' => 50]) ?></td>
                     <td><?= $item['title']?></td>
@@ -24,11 +24,11 @@
             <?php endforeach?>
             <tr>
                 <td colspan="4">Итого: </td>
-                <td id="cart-qty"><?= $session['cart']['qty']?></td>
+                <td id="cart-qty"><?= $session['cart.qty']?></td>
             </tr>
             <tr>
                 <td colspan="4">На сумму: </td>
-                <td id="cart-sum">$<?= $session['cart']['sum']?></td>
+                <td id="cart-sum">$<?= $session['cart.sum']?></td>
             </tr>
             </tbody>
         </table>

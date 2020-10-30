@@ -130,10 +130,32 @@ $('#modal-cart .modal-body').on('click', '.del-item', function () {
         type: 'GET',
         success : function(res) {
             if(!res) alert('Product dose not exists');
+            let current_location = document.location.pathname;
+            if(current_location == '/cart/checkout') {
+                location = 'cart/checkout';
+            }
             showCart(res);
         },
         error: function () {
             alert('Error! : Cant add to cart');
+        }
+    });
+});
+
+$('.value-plus, .value-minus').on('click', function () {
+    let id = $(this).data('id');
+    let qty = $(this).data('qty');
+    $('.cart-table .overlay').fadeIn();
+    $.ajax({
+        url: 'cart/change-cart',
+        data: {id: id, qty: qty},
+        type: "GET",
+        success: function (res) {
+            if(!res) alert('Error change cart');
+            location.reload();
+        },
+        error: function () {
+            alert('Cant change cart');
         }
     });
 });
