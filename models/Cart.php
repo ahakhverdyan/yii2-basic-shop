@@ -18,14 +18,17 @@ class Cart extends Model
      *
      *  Cart data session example
      *  [
-     *      [2] => [
+     *    'cart' => [
+     *          [2] => [
      *          'title' => Oil,
      *          'price' => 10,
      *          'qty' => 2,
      *          'img' => 10.png,
      *      ],
-     *      'qty' => 2,   // all qty
-     *      'sum' => 10, // all sum
+     *      ],
+     *
+     *      'cart.qty' => 2,   // all qty
+     *      'cart.sum' => 10, // all sum
      *  ]
      *
      */
@@ -44,9 +47,9 @@ class Cart extends Model
             ];
         }
 
-        $_SESSION['cart']['qty'] = (isset($_SESSION['cart']['qty'])) ? $_SESSION['cart']['qty'] + $qty : $qty;
+        $_SESSION['cart.qty'] = (isset($_SESSION['cart.qty'])) ? $_SESSION['cart.qty'] + $qty : $qty;
         $sum =  $qty * $product->price;
-        $_SESSION['cart']['sum'] = (isset($_SESSION['cart']['sum'])) ? $_SESSION['cart']['sum'] + $sum : $sum;
+        $_SESSION['cart.sum'] = (isset($_SESSION['cart.sum'])) ? $_SESSION['cart.sum'] + $sum : $sum;
 
         if($_SESSION['cart'][$product->id]['qty'] == 0) {
             unset($_SESSION['cart'][$product->id]);
@@ -69,8 +72,8 @@ class Cart extends Model
         $minusQty = $_SESSION['cart'][$id]['qty'];
         $minusSum = $minusQty * $_SESSION['cart'][$id]['price'];
 
-        $_SESSION['cart']['qty'] -= $minusQty;
-        $_SESSION['cart']['sum'] -= $minusSum;
+        $_SESSION['cart.qty'] -= $minusQty;
+        $_SESSION['cart.sum'] -= $minusSum;
         unset($_SESSION['cart'][$id]);
 
         $this->calcTotalBalance();
@@ -83,9 +86,9 @@ class Cart extends Model
      * @return bool
      */
     public function calcTotalBalance() {
-        if($_SESSION['cart']['qty'] == 0) {
-            unset($_SESSION['cart']['qty']);
-            unset($_SESSION['cart']['sum']);
+        if($_SESSION['cart.qty'] == 0) {
+            unset($_SESSION['cart.qty']);
+            unset($_SESSION['cart.sum']);
         }
         return true;
     }

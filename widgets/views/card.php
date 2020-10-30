@@ -3,7 +3,7 @@ use yii\helpers\Url;
 ?>
 <!-- Button trigger modal -->
 <button onclick="getCart()" type="button" class="button" data-toggle="modal" data-target="#modal-cart">
-    <span class="cart-sum">$<?=$_SESSION['cart']['sum'] ?? 0 ?></span>
+    <span class="cart-sum">$<?=$_SESSION['cart.sum'] ?? 0 ?></span>
 </button>
 
 <!-- Modal -->
