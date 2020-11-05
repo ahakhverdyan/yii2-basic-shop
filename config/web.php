@@ -80,6 +80,16 @@ $config = [
         ],
 
     ],
+    'controllerMap' => [
+        'elfinder' => [
+            'class' => 'mihaildev\elfinder\PathController',
+            'access' => ['@'],
+            'root' => [
+                'path' => 'uploads/ckeditor',
+                'name' => 'Files'
+            ],
+        ]
+    ],
     'params' => $params,
 ];
 

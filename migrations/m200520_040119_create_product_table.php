@@ -21,7 +21,7 @@ class m200520_040119_create_product_table extends Migration
             'old_price' => $this->decimal(6, 2)->notNull()->defaultValue('0.00'),
             'description' => $this->string()->defaultValue(Null),
             'keywords' => $this->string()->defaultValue(Null),
-            'img' => $this->string()->notNull()->defaultValue('no-image.png'),
+            'img' => $this->string()->notNull()->defaultValue(Null),
             'is_offer' => $this->tinyInteger(4)->notNull()->defaultValue(0)
         ]);
 
