@@ -97,7 +97,7 @@ use \yii\helpers\Url;
                                             <div class="snipcart-item block">
                                                 <div class="snipcart-thumb">
                                                     <a href="<?= Url::to(['product/view', 'id' => $product->id]) ?>">
-                                                        <?= Html::img('@web/products/' . $product->img) ?>
+                                                        <?= Html::img('@web/' . $product->img) ?>
                                                     </a>
                                                     <p><?= $product->title; ?></p>
                                                     <h4>$<?= $product->price; ?>
